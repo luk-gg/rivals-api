@@ -1,13 +1,7 @@
-# Luk.gg API Starter Template
-Quickly prototype with SvelteKit/Vite and deploy a REST API via GitHub. Statically outputs JSON files in `/json`.
+Models: `/Marvel/Characters/CHARID/CHARSKINID/Meshes/SK_CHARID_CHARSKINID.uasset`
+Char DB: `/Marvel/Content/Marvel/Data/DataTable/MarvelFreeHeroTable.uasset`
+Pity drop rates?: `/Marvel/Content/Marvel/Data/DataTable/MarvelGuaranteTable.uasset`
+idk: `/Marvel/Content/Marvel/Data/DataTable/MarvelShopTable.uasset`
 
-## Testing
-`npm i` and `npm run dev` to start the vite server. Links will be created for JS files created inside of `/src/lib` for convenience.
-
-## Input
-Game files go in `/game/client` and `/game/api` or `/game/server` (if applicable). Client files can typically be obtained with Fmodel and [UnrealExporter](https://github.com/whotookzakum/UnrealExporter).
-
-## Output
-To output json files, visit `/output` or `npm run output` (assumes port 5173 is open). 
-
-For example, if you have a file `/src/lib/characters.js`, output will generate `/json/en/characters.json` for anything exported as `entries_brief`, as well as individual files for each character as `/json/en/characters/{CHARACTER_ID}.json`.
+hero headshot: `/Marvel/Content/Marvel/UI/Textures/HeroPortrait/SelectHero/img_selecthero_1029101.uasset`
+hero portrait: `/Marvel/Content/Marvel/UI/Textures/Show/Skin/OriginalSkin/img_heroportrait_10160010_portrait.uasset`
