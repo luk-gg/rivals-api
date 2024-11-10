@@ -10,13 +10,12 @@ import locres from "../../game/client/Content/Localization/Game/zh-Hans/Game.jso
 // TODO: hero nameplates
 // TODO: hero mvp table?
 // TODO: hero spray
-// TODO: hero story
 // TODO: hero skins
 
 // Each object in UIHeroTable is a "Shape". Shape refers to a variant of a hero, i.e. Bruce Banner, Hero Hulk, Monster Hulk. Few characters have more than one shape. Only get UNIQUE characters by moving variant shapes (Hero Hulk, Monster Hulk) into the original shape (Bruce Banner) data.
 const uniqueCharacters = Object.entries(UIHeroTable[0].Rows)
     .reduce((acc, [key, shapeData]) => {
-        const hero = mapKeys(shapeData, {
+        const basicData = mapKeys(shapeData, {
             HeroID_: "id",
             ShapeID_: "shapeId",
             HeroName_: "heroName",
@@ -37,7 +36,24 @@ const uniqueCharacters = Object.entries(UIHeroTable[0].Rows)
             }
         })
         // Skill icon when hero bond is activated: HeroBond_112_153B26FB4FB57DFDEFD2BDA1EBCE8B80
-        hero.shapeKey = key
+
+        const lore = mapKeys(UIHeroStoryTable[0].Rows[key], {
+            Biography_: ["bio", ({ TableId, Key }) => TableId ? locres[sp(TableId, ".")][Key] : null],
+            Story_: ["story", (storiesArr) => storiesArr.map((storyObj) =>
+                mapKeys(storyObj, {
+                    Title_: ["title", ({ TableId, Key }) => TableId ? locres[sp(TableId, ".")][Key] : null],
+                    Content_: ["content", ({ TableId, Key }) => TableId ? locres[sp(TableId, ".")][Key] : null],
+                    IsUnlocked_: "isUnlocked",
+                    UnlockCondition_: ["unlockHint", ({ TableId, Key }) => TableId ? locres[sp(TableId, ".")][Key] : null],
+                }))
+            ]
+        })
+
+        const hero = {
+            ...basicData,
+            shapeKey: key,
+            ...lore
+        }
 
         if (!acc[hero.id]) {
             acc[hero.id] = hero
