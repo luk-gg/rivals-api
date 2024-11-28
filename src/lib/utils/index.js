@@ -41,7 +41,7 @@ export function writeJson(dir, fileName, data) {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
     }
-    fs.writeFileSync(`${dir}/${fileName.toLowerCase()}.json`, JSON.stringify(data))
+    fs.writeFileSync(`${dir}/${fileName.toString().toLowerCase()}.json`, JSON.stringify(data))
 }
 
 // Split-pop function for removing Unreal Engine variable types, i.e. "ESkillType::Attack" → "Attack".

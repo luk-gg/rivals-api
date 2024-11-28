@@ -12,7 +12,7 @@ export const GET = async () => {
         // If the file has an entries_brief export, then the default export is the detailed version
         if (fileData.entries_brief) {
             console.log(fileName, "(multiple entries)")
-
+            
             // Write the entries_brief to a single json
             writeJson(`./json/en`, fileName, fileData.entries_brief)
 

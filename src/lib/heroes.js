@@ -69,6 +69,8 @@ const uniqueCharacters = Object.entries(UIHeroTable[0].Rows)
         return acc
     }, {})
 
-const characters = Object.values(uniqueCharacters)
+const entries = Object.values(uniqueCharacters)
 
-export default characters
+export const entries_brief = entries
+
+export default entries
